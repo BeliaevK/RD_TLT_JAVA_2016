@@ -8,21 +8,29 @@ import java.io.InputStreamReader;
 public class Calc {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Введите первое число или 'i' для перехода в инженерный режим калькулятора");
-        int i = Integer.parseInt(reader.readLine());
+        System.out.println("Выберите тип калькулятора: s - обычный, i - инженерный");
+        String type = reader.readLine();
+        if (type.equals("s")){
+            System.out.println("Введите первое число или 'i' для перехода в инженерный режим калькулятора");
+            int i = Integer.parseInt(reader.readLine());
 //        while ()
-        System.out.println("Введите знак операции");
-        String op = reader.readLine();
-        System.out.println("Введите второе число");
-        int i1 = Integer.parseInt(reader.readLine());
-
-      //  System.out.println(i);
-      //  System.out.println(i1);
-         std(i,op,i1);
-
+            System.out.println("Введите знак операции");
+            String op = reader.readLine();
+            System.out.println("Введите второе число");
+            int i1 = Integer.parseInt(reader.readLine());
+            std(i, op, i1);
+        }
+        if (type.equals("i")){
+            System.out.println("Инженерный тип калькулятора. Вычисляющий: sin,cos,tan,log,log10." +
+                    " \nВведите математическую функцию для вычесления:");
+            String op = reader.readLine();
+            System.out.println("Введите число");
+            int j1 = Integer.parseInt(reader.readLine());
+            inj(op, j1);
+        }
     }
 
-    public static void std(int j1, String op, int j2) {
+    public static void std(int j1, String op, int j2) throws IOException {
         int res = 0;
         if (op.equals("+")) {
             res = j1 + j2;
@@ -47,11 +55,7 @@ public class Calc {
     }
 
     public static void inj(String op, int j1) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int res = 0;
-        System.out.println("Инженерный тип калькулятора. Вычисляющий: sin,cos,tan,log,log10." +
-                " \n Введите математическую функцию для вычесления:");
-        op = reader.readLine();
         if (op.equals("sin")) {
             res = (int) Math.sin(j1);
         }
