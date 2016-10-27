@@ -7,44 +7,48 @@ import java.io.InputStreamReader;
 
 public class Calc {
     public static void main(String[] args) throws IOException {
-      //  boolean run = true;
+        boolean run = true;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Выберите тип калькулятора: s - обычный, i - инженерный");
         String type = reader.readLine();
         if (type.equals("s")) {
-            //while (run) {
+            while (run) {
                 try {
                     System.out.println("Введите первое число");
                     int i = Integer.parseInt(reader.readLine());
                     System.out.println("Введите знак операции");
                     String op = reader.readLine();
-                    System.out.println("Введите второе число");
-                    int i1 = Integer.parseInt(reader.readLine());
-                    Std.std(i, op, i1);
+                    if (op.equals("+")|op.equals("-")|op.equals("*")|op.equals("/")) {
+                        System.out.println("Введите второе число");
+                        int i1 = Integer.parseInt(reader.readLine());
+                        Std.std(i, op, i1);
+                        run = false;
+                    }
+                     else
+                    { System.out.println("Неверно введена операция.");}
                 } catch (NumberFormatException e) {
-                    System.out.println("Неверный формат введенных данных");
-                  //  run = false;
+                    System.out.println("Неверный формат введенных данных.");
                 }
             }
-        // }
+         }
         else
         if (type.equals("i")){
-            try {
-                System.out.println("Инженерный тип калькулятора. Вычисляющий: sin,cos,tan,log,log10." +
-                        " \nВведите математическую функцию для вычесления:");
-                String op = reader.readLine();
-                if (op.equals("sin")|op.equals("cos")|op.equals("tan")|op.equals("log")|op.equals("log10")) {
-                    System.out.println("Введите число");
-                    int j1 = Integer.parseInt(reader.readLine());
-                    Inj.inj(op, j1);
+            while (run) {
+                try {
+                    System.out.println("Инженерный тип калькулятора. Вычисляющий: sin,cos,tan,log,log10." +
+                            " \nВведите математическую функцию для вычесления:");
+                    String op = reader.readLine();
+                    if (op.equals("sin") | op.equals("cos") | op.equals("tan") | op.equals("log") | op.equals("log10")) {
+                        System.out.println("Введите число");
+                        int j1 = Integer.parseInt(reader.readLine());
+                        Inj.inj(op, j1);
+                        run = false;
+                    } else {
+                        System.out.println("Неверно введена функция");}
                 }
-                else {
-                    System.out.println("Неверно введена функция");
-                    System.exit(0);
-                }
-            }
-            catch (NumberFormatException e) {
-                System.out.println("Неверный формат введенных данных");
+                catch (NumberFormatException e) {
+                    System.out.println("Неверный формат введенных данных");
+               }
             }
         }
         else {
@@ -77,23 +81,23 @@ public class Calc {
             System.out.println("Результат: " + res);
         }
     }
-    public static class Inj extends Std {
+    public static class Inj {
         public static void inj(String op, int j1) throws IOException {
-            int res = 0;
+            double res = 0;
             if (op.equals("sin")) {
-                res = (int) Math.sin(j1);
+                res = Math.sin(j1);
             }
             if (op.equals("cos")) {
-                res = (int) Math.cos(j1);
+                res = Math.cos(j1);
             }
             if (op.equals("tan")) {
-                res = (int) Math.tan(j1);
+                res = Math.tan(j1);
             }
             if (op.equals("log")) {
-                res = (int) Math.log(j1);
+                res = Math.log(j1);
             }
             if (op.equals("log10")) {
-                res = (int) Math.log10(j1);
+                res = Math.log10(j1);
             }
             System.out.println("Результат: " + res);
         }
