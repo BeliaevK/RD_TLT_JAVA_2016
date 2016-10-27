@@ -7,30 +7,26 @@ import java.io.InputStreamReader;
 
 public class Calc {
     public static void main(String[] args) throws IOException {
+    read();
+    }
+    public static void read () throws IOException {
         boolean run = true;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Выберите тип калькулятора: s - обычный, i - инженерный");
         String type = reader.readLine();
         if (type.equals("s")) {
-            while (run) {
-                try {
-                    System.out.println("Введите первое число");
-                    int i = Integer.parseInt(reader.readLine());
-                    System.out.println("Введите знак операции");
-                    String op = reader.readLine();
-                    if (op.equals("+")|op.equals("-")|op.equals("*")|op.equals("/")) {
-                        System.out.println("Введите второе число");
-                        int i1 = Integer.parseInt(reader.readLine());
-                        Std.std(i, op, i1);
-                        run = false;
-                    }
-                     else
-                    { System.out.println("Неверно введена операция.");}
-                } catch (NumberFormatException e) {
+            //  while (run) {
+            //    try {
+            System.out.println("Введите ваше выражение в формате 'x + y'");
+            String op = reader.readLine();
+            // System.out.println(op);
+            Std.std(op);
+            // run = false;
+          /*      } catch (NumberFormatException e) {
                     System.out.println("Неверный формат введенных данных.");
-                }
-            }
-         }
+                }*/
+        }
+        // }
         else
         if (type.equals("i")){
             while (run) {
@@ -48,7 +44,7 @@ public class Calc {
                 }
                 catch (NumberFormatException e) {
                     System.out.println("Неверный формат введенных данных");
-               }
+                }
             }
         }
         else {
@@ -57,22 +53,26 @@ public class Calc {
         }
     }
     public static class Std {
-        public static void std(int j1, String op, int j2) throws IOException {
+        public static void std(String op) throws IOException {
             int res = 0;
-            if (op.equals("+")) {
-                res = j1 + j2;
+            String[] str = op.split(" ");
+            int i1 = Integer.parseInt(str[0]);
+            String s1 = str[1];
+            int i2 = Integer.parseInt(str[2]);
+            if (s1.equals("+")) {
+                res = i1 + i2;
             }
             else
-            if (op.equals("-")) {
-                res = j1 - j2;
+            if (s1.equals("-")) {
+                res = i1 - i2;
             }
             else
-            if (op.equals("*")) {
-                res = j1 * j2;
+            if (s1.equals("*")) {
+                res = i1 * i2;
             }
             try {
-                if (op.equals("/")) {
-                    res = j1 / j2;
+                if (s1.equals("/")) {
+                    res = i1 / i2;
                 }
             } catch (ArithmeticException e) {
                 System.out.println("Деление на ноль невозможно");
