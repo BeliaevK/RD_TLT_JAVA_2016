@@ -34,33 +34,30 @@ public class Calc {
                         Std.std(i1, s1, i2);
                         run = false;
                     }
-                      catch (NumberFormatException e) {
+                      catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                         System.out.println("Неверный формат введенных данных");
                     }
-                      catch (ArrayIndexOutOfBoundsException e){
-                        System.out.println("Неверный формат введенных данных");
-                    }
-              }
+            }
             }
         }
     public static class Std {
         public static void std(int i1, String op, int i2) throws IOException {
             int res = 0;
-           if (op.equals("+")) {
-                res = i1 + i2;
-            }
-            else
-            if (op.equals("-")) {
-                res = i1 - i2;
-            }
-            else
-            if (op.equals("*")) {
-                res = i1 * i2;
-            }
             try {
-                if (op.equals("/")) {
+            switch (op) {
+                case "+":
+                    res = i1 + i2;
+                    break;
+                case "-":
+                    res = i1 - i2;
+                    break;
+                case "*":
+                    res = i1 * i2;
+                    break;
+                case "/":
                     res = i1 / i2;
-                }
+                    break;
+            }
             } catch (ArithmeticException e) {
                 System.out.println("Деление на ноль невозможно");
                 System.exit(0);
@@ -71,20 +68,22 @@ public class Calc {
     public static class Inj {
         public static void inj(String op, int j1) throws IOException {
             double res = 0;
-            if (op.equals("sin")) {
-                res = Math.sin(j1);
-            }
-            if (op.equals("cos")) {
-                res = Math.cos(j1);
-            }
-            if (op.equals("tan")) {
-                res = Math.tan(j1);
-            }
-            if (op.equals("log")) {
-                res = Math.log(j1);
-            }
-            if (op.equals("log10")) {
-                res = Math.log10(j1);
+            switch (op) {
+                case "sin":
+                    res = Math.sin(j1);
+                    break;
+                case "cos":
+                    res = Math.cos(j1);
+                    break;
+                case "tan":
+                    res = Math.tan(j1);
+                    break;
+                case "log":
+                    res = Math.log(j1);
+                    break;
+                case "log10":
+                    res = Math.log10(j1);
+                    break;
             }
             System.out.println("Результат: " + res);
         }
