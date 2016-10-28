@@ -12,51 +12,46 @@ public class Calc2 {
     public static void read () throws IOException {
         boolean run = true;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-     //   System.out.println("Выберите тип калькулятора: s - обычный, i - инженерный");
-      //  String type = reader.readLine();
-      //  if (type.equals("s")) {
-            //  while (run) {
-            //    try {
+        System.out.println("Выберите тип калькулятора: s - обычный, i - инженерный");
+        String type = reader.readLine();
+        if (type.equals("s")) {
+            System.out.println("Введите ваше выражение в формате 'x + y'");
+            String op = reader.readLine();
+            Std.std(op);
+        }
+        else
+        if (type.equals("i")){
             while (run) {
-                System.out.println("Введите математическую функцию для вычесления (sin,cos,tan,log,log10) или ваше выражение в формате 'x + y'");
-                String op = reader.readLine();
-                if (op.equals("sin") | op.equals("cos") | op.equals("tan") | op.equals("log") | op.equals("log10")) {
-                    System.out.println("Введите число");
-                    int j1 = Integer.parseInt(reader.readLine());
-                    Inj.inj(op, j1);
-                    run = false;
-                } else {
-                    try {
-                        String[] str = op.split(" ");
-                        int i1 = Integer.parseInt(str[0]);
-                        String s1 = str[1];
-                        int i2 = Integer.parseInt(str[2]);
-                        System.out.println(i1);
-                        System.out.println(s1);
-                        System.out.println(i2);
+                try {
+                    System.out.println("Инженерный тип калькулятора. Вычисляющий: sin,cos,tan,log,log10." +
+                            " \nВведите математическую функцию для вычесления:");
+                    String op = reader.readLine();
+                    if (op.equals("sin") | op.equals("cos") | op.equals("tan") | op.equals("log") | op.equals("log10")) {
+                        System.out.println("Введите число");
+                        int j1 = Integer.parseInt(reader.readLine());
+                        Inj.inj(op, j1);
                         run = false;
-                    } catch (NumberFormatException e) {
-                        System.out.println("Неверный формат введенных данных");
-                    }
+                    } else {
+                        System.out.println("Неверно введена функция");}
                 }
-                // System.out.println(op);
-                Std.std(op);
-                // run = false;
-          /*      } catch (NumberFormatException e) {
-                    System.out.println("Неверный формат введенных данных.");
-                }*/
+                catch (NumberFormatException e) {
+                    System.out.println("Неверный формат введенных данных");
+                }
             }
         }
-        // }
-
-
+        else {
+            System.out.println("Выбран неверный тип калькулятора");
+            System.exit(0);
+        }
+    }
     public static class Std {
         public static void std(String op) throws IOException {
             int res = 0;
             String[] str = op.split(" ");
-
-
-/*            if (s1.equals("+")) {
+            int i1 = Integer.parseInt(str[0]);
+            String s1 = str[1];
+            int i2 = Integer.parseInt(str[2]);
+            if (s1.equals("+")) {
                 res = i1 + i2;
             }
             else
@@ -67,9 +62,6 @@ public class Calc2 {
             if (s1.equals("*")) {
                 res = i1 * i2;
             }
-             if (s1.equals("^")) {
-                res = i1 ^ i2;
-            }
             try {
                 if (s1.equals("/")) {
                     res = i1 / i2;
@@ -77,8 +69,8 @@ public class Calc2 {
             } catch (ArithmeticException e) {
                 System.out.println("Деление на ноль невозможно");
                 System.exit(0);
-            }*/
-          //  System.out.println("Результат: " + res);
+            }
+            System.out.println("Результат: " + res);
         }
     }
     public static class Inj {
